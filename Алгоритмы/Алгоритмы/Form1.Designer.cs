@@ -77,6 +77,7 @@
             this.decartSpace.Size = new System.Drawing.Size(494, 426);
             this.decartSpace.TabIndex = 4;
             this.decartSpace.TabStop = false;
+            this.decartSpace.Click += new System.EventHandler(this.decartSpace_Click);
             // 
             // Form1
             // 

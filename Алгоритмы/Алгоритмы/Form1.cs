@@ -11,5 +11,11 @@ namespace Алгоритмы
         {
 
         }
+
+        private void decartSpace_Click(object sender, EventArgs e)
+        {
+            Graphics _graphics = Graphics.FromImage(new Bitmap(decartSpace.Width, decartSpace.Height));
+            _graphics.Clear(Color.White);
+        }
     }
 }
