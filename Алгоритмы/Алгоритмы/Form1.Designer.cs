@@ -78,6 +78,8 @@
             this.decartSpace.TabIndex = 4;
             this.decartSpace.TabStop = false;
             this.decartSpace.Click += new System.EventHandler(this.decartSpace_Click);
+            this.decartSpace.Paint += new System.Windows.Forms.PaintEventHandler(this.decartSpace_Paint);
+            this.decartSpace.MouseClick += new System.Windows.Forms.MouseEventHandler(this.decartSpace_MouseClick);
             // 
             // Form1
             // 
