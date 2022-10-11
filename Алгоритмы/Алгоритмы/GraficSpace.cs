@@ -15,10 +15,10 @@ namespace Алгоритмы
         {
             Bitmap map = new Bitmap(box.Width, box.Height);
             Graphics grath = Graphics.FromImage(map);
-            int zero_x = box.Image.Width / 2;
-            int zero_y = box.Image.Height / 2;
             Pen pen = new Pen(Color.Black);
-            grath.DrawLine(pen, new Point(zero_x,0), new Point(0, zero_y));
+            grath.DrawLine(pen, new Point(box.Width/2,0), new Point(box.Width/2,box.Height));
+            grath.DrawLine(pen, new Point(0, box.Height/2), new Point(box.Width, box.Height/2));
+            box.Image = map;
         }
     }
 }
