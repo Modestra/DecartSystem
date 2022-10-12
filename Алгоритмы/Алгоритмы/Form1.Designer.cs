@@ -33,6 +33,7 @@
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.inputName = new System.Windows.Forms.Label();
             this.decartSpace = new System.Windows.Forms.PictureBox();
+            this.inputButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.decartSpace)).BeginInit();
             this.SuspendLayout();
             // 
@@ -51,6 +52,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(285, 27);
             this.textBox1.TabIndex = 1;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // listBox1
             // 
@@ -81,11 +83,22 @@
             this.decartSpace.Paint += new System.Windows.Forms.PaintEventHandler(this.decartSpace_Paint);
             this.decartSpace.MouseClick += new System.Windows.Forms.MouseEventHandler(this.decartSpace_MouseClick);
             // 
+            // inputButton
+            // 
+            this.inputButton.Location = new System.Drawing.Point(145, 12);
+            this.inputButton.Name = "inputButton";
+            this.inputButton.Size = new System.Drawing.Size(94, 29);
+            this.inputButton.TabIndex = 5;
+            this.inputButton.Text = "Ввести";
+            this.inputButton.UseVisualStyleBackColor = true;
+            this.inputButton.Click += new System.EventHandler(this.inputButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.inputButton);
             this.Controls.Add(this.decartSpace);
             this.Controls.Add(this.inputName);
             this.Controls.Add(this.listBox1);
@@ -106,5 +119,6 @@
         private ListBox listBox1;
         private Label inputName;
         private PictureBox decartSpace;
+        private Button inputButton;
     }
 }
