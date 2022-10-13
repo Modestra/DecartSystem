@@ -4,20 +4,13 @@ namespace Алгоритмы
 {
     public partial class Form1 : Form
     {
+        List<double> ordinat = new List<double>();
         public Form1()
         {
             InitializeComponent();
             Draw();
             GraficSpace space = new();
             space.CreateCell(decartSpace);
-        }
-        public enum Elements
-        {
-            Multuply = '*',
-            Devine = '/',
-            Stepen = '^',
-            Sum = '+',
-            Minus = '-'
         }
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -43,22 +36,12 @@ namespace Алгоритмы
         {
  
         }
-        public double Result(double a, double b, Elements operation)
-        {
-            double result = operation switch
-            {
-               Elements.Devine => a/b,
-               Elements.Multuply => a*b,
-               Elements.Sum => a + b,
-               Elements.Minus => a - b
-            };
-            return result;
-        }
-        private void inputButton_Click(object sender, EventArgs e)
+        private async void inputButton_Click(object sender, EventArgs e)
         {
             //string[] input = textBox1.Text.Split(new char[] { '(', ')' }, StringSplitOptions.RemoveEmptyEntries); //Работает
-            string example = "x^2";
-            for (int x = -decartSpace.Width; x < decartSpace.Width; x = x + 1)
+            string example = textBox1.Text;
+            await Complete();
+            for (double x = -decartSpace.Width; x < decartSpace.Width; x = x + 1.0)
             {
                 if(example.Contains('x'))
                 {
@@ -68,9 +51,18 @@ namespace Алгоритмы
                     scope.SetVariable("x", input);
                     engine.ExecuteFile(@"C:\Users\Пользователь\OneDrive\Рабочий стол\DecartSystem\Алгоритмы\Алгоритмы\script.py", scope);
                     dynamic calc = scope.GetVariable("calc");
+                    ordinat.Add(calc(input));
                     listBox1.Items.Add(calc(input));
                 }
             }
+        }
+        void Example()
+        {
+            Thread.Sleep(8000);
+        }
+        async Task Complete()
+        {
+
         }
     }
 }
