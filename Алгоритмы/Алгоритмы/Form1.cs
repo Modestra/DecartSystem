@@ -1,3 +1,5 @@
+using IronPython.Hosting;
+using Microsoft.Scripting.Hosting;
 namespace Алгоритмы
 {
     public partial class Form1 : Form
@@ -17,7 +19,6 @@ namespace Алгоритмы
             Sum = '+',
             Minus = '-'
         }
-
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -38,7 +39,6 @@ namespace Алгоритмы
         {
 
         }
-
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
  
@@ -54,17 +54,21 @@ namespace Алгоритмы
             };
             return result;
         }
-
         private void inputButton_Click(object sender, EventArgs e)
         {
-            string[] input = textBox1.Text.Split(new char[] { '(', ')' }, StringSplitOptions.RemoveEmptyEntries); //Работает
-            for (double x = -decartSpace.Width; x < decartSpace.Width; x = x + 0.5) { //Все числа по оси Х
-                for (int i = 0; i < input.Length; i++)
+            //string[] input = textBox1.Text.Split(new char[] { '(', ')' }, StringSplitOptions.RemoveEmptyEntries); //Работает
+            string example = "x^2";
+            for (int x = -decartSpace.Width; x < decartSpace.Width; x = x + 1)
+            {
+                if(example.Contains('x'))
                 {
-                    if (input[i].Contains<char>('*'))
-                    {
-                        //Result(Convert.ToInt32(x), Convert.ToInt32(input[i]);
-                    }
+                    string input = example.Replace("x", Convert.ToString(x));
+                    ScriptEngine engine = Python.CreateEngine();
+                    ScriptScope scope = engine.CreateScope();
+                    scope.SetVariable("x", input);
+                    engine.ExecuteFile(@"C:\Users\Пользователь\OneDrive\Рабочий стол\DecartSystem\Алгоритмы\Алгоритмы\script.py", scope);
+                    dynamic calc = scope.GetVariable("calc");
+                    listBox1.Items.Add(calc(input));
                 }
             }
         }
