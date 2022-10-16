@@ -4,13 +4,10 @@ namespace Алгоритмы
 {
     public partial class Form1 : Form
     {
-        List<double> ordinat = new List<double>();
         public Form1()
         {
             InitializeComponent();
             Draw();
-            GraficSpace space = new();
-            space.CreateCell(decartSpace);
         }
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -36,33 +33,38 @@ namespace Алгоритмы
         {
  
         }
-        private async void inputButton_Click(object sender, EventArgs e)
+        private async void inputButton_Click(object sender, EventArgs e) //x + 30
         {
-            //string[] input = textBox1.Text.Split(new char[] { '(', ')' }, StringSplitOptions.RemoveEmptyEntries); //Работает
+            listBox1.Items.Clear();
+            Point[] points = new Point[decartSpace.Width*2];
             string example = textBox1.Text;
-            await Complete();
-            for (double x = -decartSpace.Width; x < decartSpace.Width; x = x + 1.0)
-            {
-                if(example.Contains('x'))
+            int i = 0;
+                for (int x = 0; x <= decartSpace.Width; x++)
                 {
-                    string input = example.Replace("x", Convert.ToString(x));
-                    ScriptEngine engine = Python.CreateEngine();
-                    ScriptScope scope = engine.CreateScope();
-                    scope.SetVariable("x", input);
-                    engine.ExecuteFile(@"C:\Users\Пользователь\OneDrive\Рабочий стол\DecartSystem\Алгоритмы\Алгоритмы\script.py", scope);
-                    dynamic calc = scope.GetVariable("calc");
-                    ordinat.Add(calc(input));
-                    listBox1.Items.Add(calc(input));
+                    if (example.Contains('x'))
+                    {
+                        string input = example.Replace("x", Convert.ToString(x));
+                        ScriptEngine engine = Python.CreateEngine();
+                        ScriptScope scope = engine.CreateScope();
+                        scope.SetVariable("x", input);
+                        engine.ExecuteFile(@"C:\Users\Пользователь\OneDrive\Рабочий стол\DecartSystem\Алгоритмы\Алгоритмы\script.py", scope);
+                        dynamic calc = scope.GetVariable("calc");
+                        listBox1.Items.Add($"X = {x}, Y = {Convert.ToDecimal(calc(input))}");
+                        points[i] = (new Point((int)x, (int)calc(input)));
+                        i++;
+                    }
                 }
-            }
+            GraficSpace space = new();
+            space.CreateCell(decartSpace, points);
         }
         void Example()
         {
-            Thread.Sleep(8000);
+            Thread.Sleep(10000);
+            
         }
         async Task Complete()
         {
-
+            await Task.Run(() => Example());
         }
     }
 }

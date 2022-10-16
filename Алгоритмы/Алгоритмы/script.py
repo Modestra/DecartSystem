@@ -1,2 +1,2 @@
 def calc(x):
-	return eval(x)
+	return float(eval(x))

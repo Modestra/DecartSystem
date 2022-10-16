@@ -11,7 +11,7 @@ namespace Алгоритмы
         public int X;
         public int Y;
         
-        public void CreateCell(PictureBox box)
+        public void CreateCell(PictureBox box, Point[] points) //x + 30
         {
             Bitmap map = new Bitmap(box.Width, box.Height);
             Graphics grath = Graphics.FromImage(map);
@@ -26,6 +26,7 @@ namespace Алгоритмы
             {
                 grath.DrawLine(pen, new Point((box.Width/ 2) - 4, y), new Point((box.Width / 2) + 4, y));
             }
+            grath.DrawLines(pen, points);
             box.Image = map;
         }
     }
