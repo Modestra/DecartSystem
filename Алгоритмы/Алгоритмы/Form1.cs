@@ -43,15 +43,11 @@ namespace Алгоритмы
                 {
                     if (example.Contains('x'))
                     {
-                        string input = example.Replace("x", Convert.ToString(x));
-                        ScriptEngine engine = Python.CreateEngine();
-                        ScriptScope scope = engine.CreateScope();
-                        scope.SetVariable("x", input);
-                        engine.ExecuteFile(@"C:\Users\Пользователь\OneDrive\Рабочий стол\DecartSystem\Алгоритмы\Алгоритмы\script.py", scope);
-                        dynamic calc = scope.GetVariable("calc");
-                        listBox1.Items.Add($"X = {x}, Y = {Convert.ToDecimal(calc(input))}");
-                        points[i] = (new Point((int)x, (int)calc(input)));
-                        i++;
+
+                    }
+                    else if(example.Contains('='))
+                    {
+
                     }
                 }
             //GraficSpace space = new();
