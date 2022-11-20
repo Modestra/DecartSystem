@@ -47,7 +47,7 @@ namespace Алгоритмы
                     }
                     else if(example.Contains('='))
                     {
-
+                        listBox1.Items.Add("Уравнение не должно содержать знак =");
                     }
                 }
             //GraficSpace space = new();
