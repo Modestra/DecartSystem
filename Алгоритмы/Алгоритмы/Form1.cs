@@ -54,8 +54,12 @@ namespace Алгоритмы
                         i++;
                     }
                 }
-            GraficSpace space = new();
-            space.CreateCell(decartSpace, points);
+            //GraficSpace space = new();
+            //space.CreateCell(decartSpace, points);
+            Graphics graphics = decartSpace.CreateGraphics();
+            Pen pen = new Pen(Color.Red, 2f);
+            graphics.DrawLines(pen, points);
+
         }
         void Example()
         {
